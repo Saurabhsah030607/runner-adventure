@@ -5,10 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#102015">
-  <meta name="description" content="Explore Gaming World, a Minecraft-inspired endless runner adventure.">
-  <title>Gaming World | Runner Adventure</title>
+  <meta name="description" content="Discover Runner Adventure, a Minecraft-inspired endless runner game.">
+  <title>Runner Adventure | Gaming World</title>
 
-  <!-- AdSense script: agar pehle se laga hai, apna existing code preserve karo -->
   <style>
     :root {
       --green: #a5ff60;
@@ -38,24 +37,23 @@
       text-decoration: none;
     }
 
-    /* MAIN HERO BACKGROUND IMAGE */
+    /* HERO BACKGROUND */
     .hero {
-      position: relative;
-      isolation: isolate;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      position: relative;
       background-color: #132819;
       background-image:
         linear-gradient(
           90deg,
-          rgba(3, 12, 6, .88) 0%,
-          rgba(3, 12, 6, .63) 45%,
-          rgba(3, 12, 6, .20) 100%
+          rgba(3, 12, 6, .88),
+          rgba(3, 12, 6, .48) 60%,
+          rgba(3, 12, 6, .20)
         ),
         linear-gradient(
           0deg,
-          #08130b 0%,
+          #08130b,
           transparent 35%
         ),
         url("https://raw.githubusercontent.com/Saurabhsah030607/runner-adventure/main/runner-background.png");
@@ -97,14 +95,13 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 25px;
+      gap: 22px;
       flex-wrap: wrap;
     }
 
     nav a {
       font-size: 14px;
       font-weight: bold;
-      color: #f0f5ed;
     }
 
     nav a:hover {
@@ -121,7 +118,7 @@
     .hero-content {
       width: min(1180px, 92%);
       margin: auto;
-      padding: 75px 0 120px;
+      padding: 75px 0 110px;
     }
 
     .hero-copy {
@@ -132,9 +129,9 @@
       display: inline-block;
       margin-bottom: 25px;
       padding: 10px 15px;
-      border: 1px solid rgba(165, 255, 96, .5);
+      border: 1px solid #a5ff6080;
       border-radius: 30px;
-      background: rgba(15, 45, 22, .7);
+      background: #0f2d16c9;
       color: #dcffc6;
       font-size: 12px;
       font-weight: bold;
@@ -174,10 +171,13 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      gap: 9px;
       padding: 15px 22px;
+      border: 1px solid transparent;
       border-radius: 12px;
       font-weight: bold;
-      transition: transform .2s;
+      transition: transform .2s, background .2s;
+      cursor: pointer;
     }
 
     .button:hover {
@@ -190,9 +190,19 @@
     }
 
     .secondary {
-      border: 1px solid #ffffff70;
+      border-color: #ffffff70;
       background: #ffffff16;
       color: white;
+    }
+
+    .download-button {
+      background: white;
+      color: #102015;
+      border: 2px solid var(--green);
+    }
+
+    .download-button:hover {
+      background: var(--green);
     }
 
     .stats {
@@ -277,6 +287,37 @@
       font-size: 15px;
     }
 
+    /* DOWNLOAD SECTION */
+    .download-section {
+      background:
+        linear-gradient(135deg, #132b19, #08130b);
+      text-align: center;
+    }
+
+    .download-panel {
+      padding: 45px 25px;
+      border: 1px solid #a5ff6045;
+      border-radius: 22px;
+      background: #ffffff08;
+    }
+
+    .download-panel .section-description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .coming-soon {
+      display: inline-flex;
+      margin-top: 25px;
+      padding: 15px 22px;
+      border-radius: 12px;
+      background: #ffffff16;
+      border: 1px solid #a5ff6080;
+      color: var(--green);
+      font-weight: bold;
+      cursor: default;
+    }
+
     .about {
       background: #102016;
     }
@@ -315,6 +356,7 @@
       gap: 20px;
     }
 
+    /* MOBILE DESIGN */
     @media (max-width: 760px) {
       header {
         padding: 18px 0;
@@ -324,15 +366,19 @@
 
       nav {
         width: 100%;
-        gap: 16px;
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 13px;
       }
 
       .hero {
-        background-position: center center;
+        background-position: center;
       }
 
       .hero-content {
-        padding: 55px 0 90px;
+        padding: 55px 0 85px;
       }
 
       h1 {
@@ -350,15 +396,20 @@
       .about-panel {
         padding: 25px;
       }
+
+      .buttons .button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
   <main>
+    <!-- HOME -->
     <section class="hero" id="home">
       <header>
-        <a class="brand" href="#home">
+        <a class="brand" href="#home" aria-label="Runner Adventure home">
           <span class="brand-icon">◆</span>
           <span>GAMING WORLD</span>
         </a>
@@ -367,7 +418,7 @@
           <a href="#home">Home</a>
           <a href="#features">Features</a>
           <a href="#about">About</a>
-          <a class="nav-button" href="#game">Explore Game ↗</a>
+          <a class="nav-button" href="#download">Download ↗</a>
         </nav>
       </header>
 
@@ -386,12 +437,17 @@
             endless adventure. How far can you run?
           </p>
 
-          <div class="buttons" id="game">
+          <div class="buttons">
             <a class="button primary" href="#about">
-              Discover the Adventure →
+              🎮 Explore Game
             </a>
+
             <a class="button secondary" href="#features">
-              Explore Features
+              ✨ Features
+            </a>
+
+            <a class="button download-button" href="#download">
+              ⬇ Download Game
             </a>
           </div>
 
@@ -400,10 +456,12 @@
               <strong>∞</strong>
               <small>Endless Adventure</small>
             </div>
+
             <div class="stat">
               <strong>3 Lanes</strong>
               <small>Fast Reflex Action</small>
             </div>
+
             <div class="stat">
               <strong>🪙 Coins</strong>
               <small>Collect Rewards</small>
@@ -413,10 +471,13 @@
       </div>
     </section>
 
+    <!-- FEATURES -->
     <section class="content-section features" id="features">
       <div class="container">
         <div class="section-label">The Adventure</div>
+
         <h2>Every Run Is a New Challenge.</h2>
+
         <p class="section-description">
           Run through a colourful block-style jungle, dodge obstacles,
           collect coins and see how far your adventure takes you.
@@ -453,24 +514,51 @@
       </div>
     </section>
 
+    <!-- DOWNLOAD -->
+    <section class="content-section download-section" id="download">
+      <div class="container">
+        <div class="download-panel">
+          <div class="section-label">Get the Game</div>
+
+          <h2>Ready to Become a Runner?</h2>
+
+          <p class="section-description">
+            Runner Adventure is currently under development.
+            The Android download will be available here when
+            the game is ready.
+          </p>
+
+          <span class="coming-soon">
+            🔒 APK Coming Soon
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
     <section class="content-section about" id="about">
       <div class="container">
         <div class="about-panel">
           <div>
             <div class="section-label">Ready, Runner?</div>
+
             <h2>Adventure Is Calling.</h2>
+
             <p class="section-description">
               Stay tuned for game updates, new challenges and
               more adventures from Gaming World.
             </p>
           </div>
 
-          <a class="button primary" href="#home">Back to Top ↑</a>
+          <a class="button primary" href="#home">
+            Back to Top ↑
+          </a>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <span>
@@ -481,6 +569,7 @@
       <div class="footer-links">
         <a href="#home">Home</a>
         <a href="#features">Features</a>
+        <a href="#download">Download</a>
         <a href="#about">About</a>
       </div>
     </div>
