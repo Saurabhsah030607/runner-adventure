@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102015">
+  <meta name="description" content="Discover exciting games, adventures, and updates at Gaming World.">
+  <title>Gaming World | Runner Adventure</title>
+  <style>
+    :root {
+      --green: #9cff57;
+      --green-dark: #173b22;
+      --glass: rgba(9, 18, 13, .72);
+      --text: #f7fff5;
+      --muted: #d0ddcf;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      background: #0b160e;
+    }
+    a { color: inherit; text-decoration: none; }
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      background:
+        linear-gradient(90deg, rgba(4, 13, 7, .88) 0%, rgba(4, 13, 7, .57) 48%, rgba(4, 13, 7, .18) 100%),
+        linear-gradient(0deg, #0b160e 0%, transparent 35%),
+        url("assets/runner-background.png") center / cover no-repeat;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(ellipse at 70% 45%, transparent 0%, rgba(0,0,0,.18) 75%);
+    }
+    header {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 11px;
+      font-weight: 900; letter-spacing: .5px; font-size: 1.12rem;
+    }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center;
+      border-radius: 13px; background: var(--green); color: #102015;
+      box-shadow: 0 0 28px rgba(156,255,87,.25); font-size: 1.3rem;
+    }
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a { color: #e3eee1; font-size: .94rem; font-weight: 650; transition: color .2s; }
+    nav a:hover { color: var(--green); }
+    .nav-cta {
+      padding: 11px 17px; border-radius: 12px; background: var(--green);
+      color: #102015; font-weight: 850;
+    }
+    .hero-content {
+      width: min(1180px, 92%); margin: auto; padding: 72px 0 125px;
+      display: flex; align-items: center;
+    }
+    .copy { max-width: 650px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 1px solid rgba(196,255,168,.38);
+      background: rgba(17,49,26,.62); border-radius: 999px;
+      padding: 9px 14px; color: #d8ffc5; font-size: .82rem;
+      font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+      margin-bottom: 25px; backdrop-filter: blur(10px);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+    h1 {
+      font-size: clamp(3.1rem, 7.5vw, 6.6rem);
+      line-height: .94; letter-spacing: -4px; font-weight: 950;
+      text-transform: uppercase; text-shadow: 0 5px 30px rgba(0,0,0,.32);
+    }
+    h1 span { display: block; color: var(--green); }
+    .intro {
+      max-width: 530px; margin-top: 25px; color: #e1ebdf;
+      font-size: clamp(1rem, 1.7vw, 1.18rem); line-height: 1.8;
+    }
+    .actions { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 32px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 15px 22px; border-radius: 13px; font-weight: 850;
+      border: 1px solid transparent; transition: transform .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background: var(--green); color: #102015; box-shadow: 0 10px 35px rgba(156,255,87,.2); }
+    .btn-secondary { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.25); backdrop-filter: blur(12px); }
+    .quick-stats {
+      display: flex; gap: 32px; flex-wrap: wrap; margin-top: 42px;
+    }
+    .stat strong { display: block; font-size: 1.22rem; font-weight: 900; }
+    .stat small { display: block; margin-top: 4px; color: #d2dfd0; font-size: .83rem; }
+    .scroll-hint {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      color: #e2eddf; font-size: .78rem; letter-spacing: 2px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px; opacity: .85;
+    }
+    .scroll-hint span { width: 22px; height: 32px; border: 1px solid #e2eddf; border-radius: 99px; position: relative; }
+    .scroll-hint span::after { content:""; position:absolute; top:6px; left:9px; width:3px; height:6px; background:var(--green); border-radius:5px; }
+    section { padding: 90px 4%; }
+    .section-inner { width: min(1100px, 100%); margin: auto; }
+    .section-label { color: var(--green); font-size: .8rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    h2 { margin-top: 12px; font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -1.5px; }
+    .section-desc { color: var(--muted); line-height: 1.8; max-width: 650px; margin-top: 14px; }
+    .features { background: #0b160e; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 35px; }
+    .feature {
+      padding: 26px; border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px; background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+    }
+    .feature-icon {
+      width: 48px; height: 48px; display:grid; place-items:center; border-radius:14px;
+      background: rgba(156,255,87,.13); font-size: 1.45rem; margin-bottom: 18px;
+    }
+    .feature h3 { font-size: 1.1rem; margin-bottom: 9px; }
+    .feature p { color: var(--muted); font-size: .94rem; line-height: 1.7; }
+    .about { background: #101f14; }
+    .about-panel {
+      padding: clamp(25px, 5vw, 55px); border-radius: 26px;
+      background: linear-gradient(120deg, rgba(156,255,87,.12), rgba(255,255,255,.035));
+      border: 1px solid rgba(156,255,87,.2);
+      display:flex; justify-content:space-between; align-items:center; gap:30px; flex-wrap:wrap;
+    }
+    footer { padding: 28px 4%; background: #071009; color: #b8c7b6; }
+    .footer-inner { width:min(1100px,100%); margin:auto; display:flex; justify-content:space-between; align-items:center; gap:18px; flex-wrap:wrap; font-size:.88rem; }
+    .footer-links { display:flex; gap:20px; }
+    @media (max-width: 760px) {
+      header { padding: 17px 0; flex-wrap: wrap; }
+      nav { width:100%; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+      nav a { font-size:.84rem; }
+      .hero { background-position: 57% center; }
+      .hero-content { padding: 65px 0 110px; }
+      h1 { letter-spacing:-2px; }
+      .intro { text-shadow: 0 2px 10px #000; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .quick-stats { gap:22px; }
+      .scroll-hint { display:none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" id="home">
+      <header>
+        <a class="brand" href="#home" aria-label="Gaming World home">
+          <span class="brand-mark">◆</span>
+          <span>GAMING WORLD</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a class="nav-cta" href="#game">Explore Game ↗</a>
+        </nav>
+      </header>
+
+      <div class="hero-content">
+        <div class="copy">
+          <div class="eyebrow"><span class="dot"></span> Your next adventure starts here</div>
+          <h1>Run. Dodge.<span>Explore.</span></h1>
+          <p class="intro">Enter a blocky world packed with wild trails, hidden treasures, tricky obstacles, and endless adventure. How far can you run?</p>
+          <div class="actions" id="game">
+            <a class="btn btn-primary" href="#about">Discover the Adventure <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#features">Explore Features</a>
+          </div>
+          <div class="quick-stats">
+            <div class="stat"><strong>∞</strong><small>Endless adventure</small></div>
+            <div class="stat"><strong>3 lanes</strong><small>Fast reflex action</small></div>
+            <div class="stat"><strong>Collect</strong><small>Coins & rewards</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint"><span></span> Scroll to explore</div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="section-inner">
+        <div class="section-label">The adventure</div>
+        <h2>Every run is a new challenge.</h2>
+        <p class="section-desc">Dash through a vibrant block-style world, react quickly, and keep moving. The journey is yours to master.</p>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-icon">🌿</div>
+            <h3>Explore Wild Worlds</h3>
+            <p>Discover lush forests, rocky paths, waterfalls, bridges, and mysterious places along the trail.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">🪙</div>
+            <h3>Collect the Loot</h3>
+            <p>Follow the trail of shiny coins and build up your rewards as you travel farther.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Dodge Every Obstacle</h3>
+            <p>Switch lanes, jump over barriers, and time your moves to keep your adventure going.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="section-inner">
+        <div class="about-panel">
+          <div>
+            <div class="section-label">Ready, runner?</div>
+            <h2>Adventure is calling.</h2>
+            <p class="section-desc">Stay tuned for game updates, new challenges, and more from Gaming World.</p>
+          </div>
+          <a class="btn btn-primary" href="#home">Back to top ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Gaming World. All rights reserved.</span>
+      <div class="footer-links"><a href="#home">Home</a><a href="#features">Features</a><a href="#about">About</a></div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
